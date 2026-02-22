@@ -1,0 +1,11 @@
+{
+  "name": "solvy-care",
+  "private": true,
+  "scripts": {
+    "start": "npx live-server --port=8080",
+    "share": "npx concurrently -k \"npx live-server --port=8080\" \"npx localtunnel --port 8080\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

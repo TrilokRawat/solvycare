@@ -1,0 +1,220 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Solvy Floor cleaner",
+      "slug": "floor-cleaner",
+      "category": "Surface Care",
+      "shortDescription": "High-performance deodorizing floor cleaner for daily maintenance in hotels, hospitals, offices and homes.",
+      "description": "SOLVY Floor Cleaner is a professional-grade formulation designed for daily cleaning of vitrified tiles, marble, granite and other hard floor surfaces. It offers excellent soil removal, streak-free finish and a fresh fragrance, making it ideal for high-traffic areas such as lobbies, corridors, patient rooms and reception spaces.",
+      "features": [
+        "Streak-free cleaning with fresh deodorizing fragrance",
+        "Effective on vitrified tiles, marble, granite and ceramic flooring",
+        "Low-foaming for mop and machine applications",
+        "Suitable for hotels, hospitals, offices and residential complexes"
+      ],
+      "sizes": [
+        "1 L",
+        "5 L",
+        "20 L"
+      ],
+      "industries": [
+        "Hotels",
+        "Hospitals",
+        "Offices",
+        "Distributors",
+        "Homes"
+      ],
+      "image": "assets/images/Solvy Floor cleaner.png",
+      "seo": {
+        "metaTitle": "Industrial Floor Cleaner Manufacturer in India | SOLVY",
+        "metaDescription": "SOLVY Floor Cleaner is a high-performance industrial floor cleaner for hotels, hospitals, offices and homes. Streak-free finish and fresh fragrance for professional housekeeping.",
+        "keywords": [
+          "floor cleaner",
+          "industrial floor cleaner",
+          "hotel floor cleaner",
+          "hospital floor cleaner",
+          "floor cleaning chemical manufacturer India"
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "name": "Solvy Kitchen Cleaner",
+      "slug": "kitchen-cleaner",
+      "category": "Kitchen Hygiene",
+      "shortDescription": "Heavy-duty kitchen degreaser for food preparation areas and commercial kitchens.",
+      "description": "SOLVY Kitchen Cleaner is a powerful degreasing formulation for cutting through oil, grease and food deposits on kitchen surfaces. It is suitable for stainless steel worktops, tiles, hoods, counters and food preparation areas in hotels, restaurants, cloud kitchens and institutional canteens.",
+      "features": [
+        "Heavy-duty degreasing action for tough kitchen soil",
+        "Safe for stainless steel, tiles and most washable surfaces",
+        "Helps maintain hygiene in high-usage commercial kitchens",
+        "Optimised for housekeeping and stewarding teams"
+      ],
+      "sizes": [
+        "1 L",
+        "5 L"
+      ],
+      "industries": [
+        "Hotels",
+        "Hospitals",
+        "Offices",
+        "Distributors"
+      ],
+      "image": "assets/images/Solvy Kitchen Cleaner.png",
+      "seo": {
+        "metaTitle": "Commercial Kitchen Cleaner & Degreaser | SOLVY",
+        "metaDescription": "SOLVY Kitchen Cleaner is a heavy-duty degreaser for commercial and hotel kitchens. Effectively removes oil and grease from tiles, counters and stainless steel surfaces.",
+        "keywords": [
+          "kitchen cleaner",
+          "commercial kitchen degreaser",
+          "hotel kitchen cleaning chemical",
+          "kitchen surface cleaner"
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "name": "Solvy Glass Cleaner",
+      "slug": "glass-cleaner",
+      "category": "Glass & Surface Care",
+      "shortDescription": "Streak-free glass and mirror cleaner for clear, spot-free surfaces.",
+      "description": "SOLVY Glass Cleaner delivers crystal-clear, streak-free cleaning for glass, mirrors, windows and glossy surfaces. It is suitable for hotels, hospitals, offices and retail environments where presentation and visibility are critical.",
+      "features": [
+        "Streak-free formula for glass and mirrors",
+        "Fast-drying with no sticky residue",
+        "Ideal for lobby glass, partitions and windows",
+        "Ready-to-use convenience for housekeeping teams"
+      ],
+      "sizes": [
+        "500 ml",
+        "5 L"
+      ],
+      "industries": [
+        "Hotels",
+        "Hospitals",
+        "Offices",
+        "Homes",
+        "Distributors"
+      ],
+      "image": "assets/images/Solvy Glass Cleaner.png",
+      "seo": {
+        "metaTitle": "Professional Glass Cleaner Supplier in India | SOLVY",
+        "metaDescription": "SOLVY Glass Cleaner provides streak-free cleaning for glass, mirrors and windows in hotels, hospitals, offices and homes.",
+        "keywords": [
+          "glass cleaner",
+          "streak-free glass cleaner",
+          "window cleaner chemical",
+          "glass cleaning supplier India"
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "name": "Solvy Toilet Cleaner",
+      "slug": "toilet-bowl-cleaner",
+      "category": "Washroom Hygiene",
+      "shortDescription": "Thick toilet bowl cleaner for tough stains and hygienic washrooms.",
+      "description": "SOLVY Toilet Bowl Cleaner is a thick, powerful cleaner formulated to remove hard water stains, scale and deposits from toilet bowls and urinals. It helps maintain hygienic, fresh-smelling washrooms in hotels, hospitals, offices and public facilities.",
+      "features": [
+        "Thick formula clings to vertical surfaces for longer contact time",
+        "Removes hard water stains and scale deposits",
+        "Helps control malodour in washrooms",
+        "Suitable for hotels, hospitals, offices and institutions"
+      ],
+      "sizes": [
+        "500 ml",
+        "1 L",
+        "5 L"
+      ],
+      "industries": [
+        "Hotels",
+        "Hospitals",
+        "Offices",
+        "Distributors",
+        "Homes"
+      ],
+      "image": "assets/images/Solvy Toilet Cleaner.png",
+      "seo": {
+        "metaTitle": "Toilet Bowl Cleaner Manufacturer in India | SOLVY",
+        "metaDescription": "SOLVY Toilet Bowl Cleaner is a thick washroom cleaning chemical for removing stains and scale from toilet bowls and urinals in hotels, hospitals and offices.",
+        "keywords": [
+          "toilet bowl cleaner",
+          "washroom cleaner chemical",
+          "urinal cleaner",
+          "toilet cleaning chemical manufacturer"
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "name": "Solvy Handwash",
+      "slug": "liquid-hand-wash",
+      "category": "Personal Hygiene",
+      "shortDescription": "Mild, effective liquid hand wash for frequent use in commercial and home washrooms.",
+      "description": "SOLVY Liquid Hand Wash is a skin-friendly hand washing formulation suitable for hotels, hospitals, offices, institutions and homes. It offers effective cleansing with a pleasant fragrance, making it ideal for frequent daily use in washrooms and hand wash stations.",
+      "features": [
+        "Gentle on skin for frequent hand washing",
+        "Pleasant fragrance suitable for guest-facing washrooms",
+        "Compatible with most liquid soap dispensers",
+        "Ideal for hotels, hospitals, offices and homes"
+      ],
+      "sizes": [
+        "250 ml",
+        "500 ml",
+        "5 L"
+      ],
+      "industries": [
+        "Hotels",
+        "Hospitals",
+        "Offices",
+        "Homes",
+        "Distributors"
+      ],
+      "image": "assets/images/Solvy Handwash.png",
+      "seo": {
+        "metaTitle": "Liquid Hand Wash Manufacturer & Supplier | SOLVY",
+        "metaDescription": "SOLVY Liquid Hand Wash is a mild yet effective hand wash for hotels, hospitals, offices and homes. Suitable for frequent daily use.",
+        "keywords": [
+          "liquid hand wash",
+          "hand wash manufacturer",
+          "hotel hand wash",
+          "bulk liquid hand wash supplier"
+        ]
+      }
+    },
+    {
+      "id": 8,
+      "name": "Solvy Dishwash",
+      "slug": "dishwash",
+      "category": "Kitchen Hygiene",
+      "shortDescription": "Effective dishwash liquid for removing grease and food residues.",
+      "description": "Solvy Dishwash is formulated to cut through tough grease and leave utensils sparkling clean. Suitable for both household and commercial kitchens.",
+      "features": [
+        "Powerful degreasing action",
+        "Gentle on hands with rinse-off formula",
+        "Suitable for dishes, cutlery and kitchenware"
+      ],
+      "sizes": [
+        "500 ml",
+        "1 L"
+      ],
+      "industries": [
+        "Homes",
+        "Hotels",
+        "Restaurants",
+        "Distributors"
+      ],
+      "image": "assets/images/Solvy Dishwash.png",
+      "seo": {
+        "metaTitle": "Solvy Dishwash - Dishwashing Liquid",
+        "metaDescription": "Solvy Dishwash removes grease and food residues for sparkling dishes.",
+        "keywords": [
+          "dishwash",
+          "dishwashing liquid",
+          "kitchen cleaning"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="260" height="50" viewBox="0 0 260 50" role="img" aria-label="SOLVY logo">
+  <defs>
+    <style>
+      .brand { font: 700 20px/1 Poppins, sans-serif; fill: #0d6efd; }
+      .tag { font: 600 14px/1 Poppins, sans-serif; fill: #0d6efd; }
+      .mark { fill: #0d6efd; }
+      .hc { font: 600 9px/1 Poppins, sans-serif; fill: white; }
+    </style>
+  </defs>
+  <!-- circular mark with small 'hc' as a power badge -->
+  <g transform="translate(0,0)">
+    <circle cx="22" cy="25" r="18" class="mark" />
+    <text x="22" y="20" text-anchor="middle" class="hc">hc</text>
+  </g>
+  <!-- Brand text -->
+  <text x="52" y="28" class="brand">SOLVY</text>
+</svg>

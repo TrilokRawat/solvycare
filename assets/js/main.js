@@ -165,23 +165,22 @@ async function initProductsPage() {
             const waText = encodeURIComponent("I'm interested in " + product.name + " from SOLVY.");
 
             return `
-        <div class="col-md-6 col-lg-4">
-          <div class="product-card product-card-full h-100">
-            <div class="product-card-image">
-              <img src="${image}" alt="${product.name}">
-            </div>
-            <div class="product-card-body">
-              <span class="product-card-category">${category}</span>
-              <h3 class="product-card-title">${product.name}</h3>
-              <p class="product-card-desc">${product.shortDescription || ""}</p>
-              <div class="product-card-actions">
-                <a href="${href}" class="btn btn-accent btn-sm">View details</a>
-                <a href="https://wa.me/919111912346?text=${waText}" target="_blank" rel="noopener" class="btn btn-outline-success btn-sm" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-      `;
+                <div class="col-md-6 col-lg-4">
+                    <a href="${href}" class="product-card-link">
+                        <div class="product-card product-card-full h-100">
+                            <div class="product-card-image">
+                                <img src="${image}" alt="${product.name}">
+                            </div>
+                            <div class="product-card-body">
+                                <span class="product-card-category">${category}</span>
+                                <h3 class="product-card-title">${product.name}</h3>
+                                <p class="product-card-desc">${product.shortDescription || ""}</p>
+                                
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            `;
         })
         .join("");
 }

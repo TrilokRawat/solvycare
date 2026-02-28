@@ -260,6 +260,7 @@ a:hover {
     .hero-title {
         font-size: 2.75rem;
     }
+
     .hero-overlay {
         padding-bottom: 4rem;
     }
@@ -270,22 +271,43 @@ a:hover {
     .header-spacer {
         height: 64px;
     }
+
     .hero-home .owl-carousel {
         min-height: 40vh;
     }
+
     .section-padding {
         padding: 2rem 0;
     }
+
+    main.section-padding.distributors-page {
+        margin-top: 19px;
+    }
+
+    main.section-padding.about-page {
+        margin-top: 19px;
+    }
+
+    main.section-padding.terms-page {
+        margin-top: 19px;
+    }
+
+    main.section-padding.privacy-page {
+        margin-top: 19px;
+    }
+
     .hero-overlay {
         padding-bottom: 4.5rem;
         padding-left: var(--bs-gutter-x, 12px);
         padding-right: var(--bs-gutter-x, 12px);
     }
+
     .hero-overlay-inner {
         padding-left: var(--bs-gutter-x, 12px);
         padding-right: var(--bs-gutter-x, 12px);
         padding-bottom: 0.5rem;
     }
+
     .btn-hero {
         display: inline-block;
         min-width: 140px;
@@ -298,6 +320,7 @@ a:hover {
     .hero-overlay {
         padding-bottom: 4.5rem;
     }
+
     .hero-overlay-inner {
         max-width: 560px;
     }
@@ -482,12 +505,15 @@ a:hover {
         height: 160px;
         padding: 1rem;
     }
+
     .product-card-image img {
         max-height: 120px;
     }
+
     .product-card-body {
         padding: 1rem;
     }
+
     .product-card-title {
         font-size: 1rem;
     }
@@ -516,6 +542,7 @@ a:hover {
     .products-page {
         padding-top: calc(64px + 1.5rem);
     }
+
     .products-page-header {
         margin-bottom: 1.5rem;
     }
@@ -583,9 +610,11 @@ a:hover {
     align-items: center;
     justify-content: center;
 }
+
 .industry-hero-gradient {
     background: linear-gradient(135deg, #0f766e 0%, #134e4a 50%, #0f172a 100%);
 }
+
 .industry-hero-img {
     position: absolute;
     inset: 0;
@@ -594,6 +623,7 @@ a:hover {
     object-fit: cover;
     object-position: center center;
 }
+
 .industry-hero-overlay {
     position: absolute;
     inset: 0;
@@ -603,18 +633,23 @@ a:hover {
     justify-content: center;
     text-align: center;
 }
+
 .industry-hero-gradient .industry-hero-overlay {
     background: transparent;
 }
+
 .industry-hero:not(.industry-hero-gradient) .industry-hero-overlay {
     background: linear-gradient(135deg, rgba(15, 23, 42, 0.75) 0%, rgba(13, 148, 136, 0.4) 100%);
 }
+
 .industry-hero-overlay .container {
     padding: 2rem 1rem;
 }
+
 .industry-hero .section-title {
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
+
 @media (max-width: 576px) {
     .industry-hero {
         min-height: 260px;
@@ -730,13 +765,16 @@ a:hover {
     background: #f8fafc;
     border: 1px solid #e2e8f0;
 }
+
 .contact-details-card .contact-list a {
     color: var(--solvy-text);
     font-weight: 500;
 }
+
 .contact-details-card .contact-list a:hover {
     color: var(--accent);
 }
+
 .contact-icon {
     display: inline-flex;
     align-items: center;
@@ -946,9 +984,11 @@ a:hover {
     .product-detail-page {
         padding-top: calc(64px + 1.5rem);
     }
+
     .product-detail-gallery {
         position: static;
     }
+
     .product-detail-title {
         font-size: 1.5rem;
     }
@@ -991,6 +1031,7 @@ a:hover {
     color: var(--accent);
     text-decoration: underline;
 }
+
 .cookie-banner .cookie-text a:hover {
     color: var(--accent-hover);
 }
@@ -1008,14 +1049,17 @@ a:hover {
         bottom: 12px;
         padding: 12px 14px;
     }
+
     .cookie-banner .cookie-inner {
         flex-direction: column;
         align-items: stretch;
         gap: 0.75rem;
     }
+
     .cookie-banner .cookie-text {
         min-width: 0;
     }
+
     .cookie-banner .cookie-actions {
         justify-content: flex-end;
     }

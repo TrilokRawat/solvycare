@@ -254,57 +254,102 @@ async function initProductDetailPage() {
         return;
     }
 
-    // Populate elements
-    const img = document.getElementById("product-image");
-    const nameEl = document.getElementById("product-name");
-    const shortDescEl = document.getElementById("product-short-description");
-    const descEl = document.getElementById("product-description");
-    const featuresList = document.getElementById("product-features");
-    const sizesList = document.getElementById("product-sizes");
-    const industriesList = document.getElementById("product-industries");
+    // build modern layout HTML using data
+    const basePath = getBasePath();
+    const imgUrl = basePath + (product.image || "assets/images/placeholder.png");
+    const waText = encodeURIComponent(`I am interested in ${product.name} from SOLVY.`);
 
-    const categoryEl = document.getElementById("product-category");
-    if (img) {
-        const basePath = getBasePath();
-        img.src = basePath + (product.image || "assets/images/placeholder.png");
-        img.alt = product.name + " product image";
+    function renderFeatures(features) {
+        if (!Array.isArray(features)) return "";
+        // simple keyword-to-icon mapping
+        const iconMap = {
+            "fast": "bi-flash",
+            "tough": "bi-droplet",
+            "odor": "bi-geo-alt-fill",
+            "fresh": "bi-clock",
+            "commercial": "bi-building",
+            "safe": "bi-shield-check",
+            "grease": "bi-fire",
+            "degreasing": "bi-brush",
+            "soft": "bi-leaf",
+            "absorb": "bi-droplet",
+            "gentle": "bi-flower1",
+            "streak": "bi-sun",
+            "dry": "bi-sun",
+            "antimicrobial": "bi-shield-check"
+        };
+        return features
+            .map(f => {
+                let icon = 'bi-check2-circle';
+                const lower = f.toLowerCase();
+                for (const key in iconMap) {
+                    if (lower.includes(key)) {
+                        icon = iconMap[key];
+                        break;
+                    }
+                }
+                return `<div class=\"feature-item\"><i class=\"bi ${icon}\"></i>${f}</div>`;
+            })
+            .join("");
     }
-    if (categoryEl) categoryEl.textContent = product.category || "Cleaning Solution";
-    if (nameEl) nameEl.textContent = product.name || "";
-    if (shortDescEl) shortDescEl.textContent = product.shortDescription || "";
-    if (descEl) descEl.textContent = product.description || "";
-
-    function renderList(listElement, items) {
-        if (!listElement) return;
-        listElement.innerHTML = "";
-        if (Array.isArray(items)) {
-            items.forEach(item => {
-                const li = document.createElement("li");
-                li.textContent = item;
-                listElement.appendChild(li);
-            });
-        }
+    function renderSizes(sizes) {
+        if (!Array.isArray(sizes)) return "";
+        // non-interactive pills (no active state)
+        return sizes
+            .map(s => `<div class=\"size-pill\">${s}</div>`)
+            .join("");
+    }
+    function renderIndustries(inds) {
+        if (!Array.isArray(inds)) return "";
+        return inds
+            .map(i => `<div class=\"industry-item\"><i class=\"bi bi-building\"></i>${i}</div>`)
+            .join("");
     }
 
-    renderList(featuresList, product.features);
-    renderList(sizesList, product.sizes);
-    renderList(industriesList, product.industries);
+    container.innerHTML = `
+        <div class="product-detail modern">
+            <div class="product-detail-content">
+                <div class="product-detail-header">
+                    <h1 class="product-detail-title">${product.name}</h1>
+                    <div class="product-detail-category">${product.category || ""}</div>
+                </div>
+                <!-- gallery still early in source order so mobile sees it just after header -->
+                <div class="product-detail-gallery">
+                    <img src="${imgUrl}" alt="${product.name}" class="product-detail-image">
+                </div>
+                <div class="product-detail-body">
+                    <div class="product-tagline">${product.shortDescription || ""}</div>
+                    <p class="product-detail-description">${product.description || ""}</p>
 
-    // Update dynamic SEO + schema
+                    <div class="features-grid">
+                        ${renderFeatures(product.features)}
+                    </div>
+                    <!-- sizes with label -->
+                    <div class="sizes-label mb-2"><strong>Sizes:</strong></div>
+                    <div class="sizes">
+                        ${renderSizes(product.sizes)}
+                    </div>
+                    ${product.application ? `<div class="application-block mt-3"><strong>Application:</strong> ${product.application}</div>` : ''}
+                    <!-- industries with label -->
+                    <div class="industries-label mb-2"><strong>Industries:</strong></div>
+                    <div class="industries">
+                        ${renderIndustries(product.industries)}
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+
+
+    // update WP float button if present
+    const floatBtn = document.querySelector('.whatsapp-float');
+    if(floatBtn) {
+        floatBtn.href = "https://wa.me/919111912346?text=" + waText;
+    }
+
+    // Update SEO and schema
     updateProductSEO(product);
     injectProductSchema(product);
-
-    // Update Get Quote and WhatsApp CTA (if present)
-    const quoteBtn = document.getElementById("product-quote-btn");
-    if (quoteBtn) {
-        const basePath = getBasePath();
-        quoteBtn.href = basePath + "contact.html";
-    }
-    const waBtn = document.getElementById("product-whatsapp-btn");
-    if (waBtn) {
-        const text = `I am interested in ${product.name} from SOLVY.`;
-        waBtn.href = "https://wa.me/919111912346?text=" + encodeURIComponent(text);
-    }
 }
 
 // Initialise page by data-page attribute

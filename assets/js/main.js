@@ -12,7 +12,11 @@ function ensureCanonicalTag() {
         if (!link) {
             link = document.createElement('link');
             link.setAttribute('rel', 'canonical');
-            const href = (window.location.origin || '') + (window.location.pathname || '/');
+            const origin = window.location.origin || '';
+            const path = window.location.pathname || '/';
+            // Normalise home to root (avoid /index.html canonical)
+            const canonicalPath = /index\.html?$/i.test(path) ? '/' : path;
+            const href = origin + canonicalPath;
             link.setAttribute('href', href);
             document.head.appendChild(link);
         }
@@ -232,11 +236,17 @@ function updateProductSEO(product) {
 function injectProductSchema(product) {
     if (!product) return;
 
+    const origin = window.location.origin || '';
+    const imagePath = product.image || '';
+    const absoluteImage = imagePath
+        ? origin + '/' + imagePath.replace(/^\/+/, '')
+        : undefined;
+
     const schema = {
         "@context": "https://schema.org/",
         "@type": "Product",
         "name": product.name,
-        "image": [product.image],
+        "image": absoluteImage ? [absoluteImage] : undefined,
         "description": product.description || product.shortDescription,
         "brand": {
             "@type": "Brand",
@@ -258,11 +268,17 @@ function injectProductsListSchema(products) {
     if (!Array.isArray(products) || !products.length) return;
     if (document.getElementById('solvyProductsSchema')) return;
 
+    const origin = window.location.origin || '';
+
     const graph = products.map(function (product) {
+        const imagePath = product.image || '';
+        const absoluteImage = imagePath
+            ? origin + '/' + imagePath.replace(/^\/+/, '')
+            : undefined;
         return {
             "@type": "Product",
             "name": product.name,
-            "image": [product.image],
+            "image": absoluteImage ? [absoluteImage] : undefined,
             "description": product.description || product.shortDescription,
             "brand": {
                 "@type": "Brand",
@@ -290,10 +306,9 @@ function injectHomeSchema() {
     try {
         if (document.getElementById('solvyHomeSchema')) return;
 
-        const pathname = window.location.pathname || '/';
-        const basePath = pathname.replace(/index\.html?$/i, '');
         const origin = window.location.origin || '';
-        const siteUrl = origin + basePath;
+        // Home schema should always point to the root URL
+        const siteUrl = origin + '/';
         const logoUrl = siteUrl + 'assets/images/logo.svg';
 
         const orgId = siteUrl + '#organization';

@@ -5,6 +5,22 @@
 // Simple products cache
 let solvyProductsCache = null;
 
+// Ensure a canonical URL tag exists for basic SEO hygiene
+function ensureCanonicalTag() {
+    try {
+        let link = document.querySelector('link[rel="canonical"]');
+        if (!link) {
+            link = document.createElement('link');
+            link.setAttribute('rel', 'canonical');
+            const href = (window.location.origin || '') + (window.location.pathname || '/');
+            link.setAttribute('href', href);
+            document.head.appendChild(link);
+        }
+    } catch (e) {
+        console.error('Canonical tag error', e);
+    }
+}
+
 // Determine base path for nested pages (e.g. /products/*.html or products\floor-cleaner.html on Windows)
 function getBasePath() {
     const path = (window.location.pathname || "").replace(/\\/g, "/");
@@ -183,6 +199,9 @@ async function initProductsPage() {
             `;
         })
         .join("");
+
+    // Inject catalogue-level JSON-LD once products are loaded
+    injectProductsListSchema(products);
 }
 
 // Update SEO meta tags dynamically for product detail page
@@ -232,6 +251,94 @@ function injectProductSchema(product) {
     script.type = "application/ld+json";
     script.textContent = JSON.stringify(schema);
     document.head.appendChild(script);
+}
+
+// Inject JSON-LD for full product catalogue (used on products listing page)
+function injectProductsListSchema(products) {
+    if (!Array.isArray(products) || !products.length) return;
+    if (document.getElementById('solvyProductsSchema')) return;
+
+    const graph = products.map(function (product) {
+        return {
+            "@type": "Product",
+            "name": product.name,
+            "image": [product.image],
+            "description": product.description || product.shortDescription,
+            "brand": {
+                "@type": "Brand",
+                "name": "SOLVY"
+            },
+            "category": product.category || "Cleaning Chemical",
+            "sku": String(product.id || "")
+        };
+    });
+
+    const schema = {
+        "@context": "https://schema.org",
+        "@graph": graph
+    };
+
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.id = 'solvyProductsSchema';
+    script.textContent = JSON.stringify(schema);
+    document.head.appendChild(script);
+}
+
+// Inject Organization / Website JSON-LD on homepage
+function injectHomeSchema() {
+    try {
+        if (document.getElementById('solvyHomeSchema')) return;
+
+        const pathname = window.location.pathname || '/';
+        const basePath = pathname.replace(/index\.html?$/i, '');
+        const origin = window.location.origin || '';
+        const siteUrl = origin + basePath;
+        const logoUrl = siteUrl + 'assets/images/logo.svg';
+
+        const orgId = siteUrl + '#organization';
+
+        const organization = {
+            "@type": "Organization",
+            "@id": orgId,
+            "name": "SOLVY",
+            "description": "Professional cleaning chemical manufacturer and supplier in India, serving hotels, hospitals, offices, distributors and homes.",
+            "telephone": "+91 9111912346",
+            "email": "Contact.solvy@gmail.com",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Indore",
+                "addressRegion": "Madhya Pradesh",
+                "addressCountry": "IN"
+            },
+            "logo": logoUrl,
+            "sameAs": [
+                "https://www.instagram.com/solvycare_?igsh=MmRsZjl6eXdudG5p",
+                "https://www.facebook.com/solvycare"
+            ]
+        };
+
+        const website = {
+            "@type": "WebSite",
+            "@id": siteUrl + '#website',
+            "name": "SOLVY",
+            "url": siteUrl,
+            "publisher": { "@id": orgId }
+        };
+
+        const schema = {
+            "@context": "https://schema.org",
+            "@graph": [organization, website]
+        };
+
+        const script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.id = 'solvyHomeSchema';
+        script.textContent = JSON.stringify(schema);
+        document.head.appendChild(script);
+    } catch (e) {
+        console.error('Home schema error', e);
+    }
 }
 
 // Initialise product detail page
@@ -358,6 +465,7 @@ function initSolvyPage() {
     if (page === "home") {
         initHomeProducts();
         initHomeCarousel();
+        injectHomeSchema();
     } else if (page === "products") {
         initProductsPage();
     } else if (page === "product-detail") {
@@ -366,6 +474,7 @@ function initSolvyPage() {
 }
 // DOM Ready
 document.addEventListener("DOMContentLoaded", function () {
+    ensureCanonicalTag();
     loadComponent("header", "components/header.html");
     loadComponent("footer", "components/footer.html");
     initSolvyPage();

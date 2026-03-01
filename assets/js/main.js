@@ -343,7 +343,7 @@ async function initProductDetailPage() {
 
     // update WP float button if present
     const floatBtn = document.querySelector('.whatsapp-float');
-    if(floatBtn) {
+    if (floatBtn) {
         floatBtn.href = "https://wa.me/919111912346?text=" + waText;
     }
 
@@ -357,48 +357,13 @@ function initSolvyPage() {
     const page = document.body.dataset.page;
     if (page === "home") {
         initHomeProducts();
-        initOwlSlider();
+        initHomeCarousel();
     } else if (page === "products") {
         initProductsPage();
     } else if (page === "product-detail") {
         initProductDetailPage();
     }
 }
-// Initialize Owl Carousel for the homepage slider
-function initOwlSlider() {
-    const el = document.getElementById('home-owl');
-    if (!el) return;
-
-    // If Owl is not available yet, wait a bit
-    if (typeof jQuery === 'undefined' || typeof jQuery.fn.owlCarousel === 'undefined') {
-        setTimeout(initOwlSlider, 250);
-        return;
-    }
-
-    const $el = jQuery(el);
-    if ($el.data('owl-initialized')) return;
-
-    $el.owlCarousel({
-        items: 1,
-        loop: true,
-        autoplay: true,
-        autoplayTimeout: 3000,
-        autoplayHoverPause: true,
-        nav: false,
-        dots: true,
-        navText: ['‹', '›'],
-        smartSpeed: 700,
-        autoHeight: false,
-        onInitialized: function () {
-            // ensure internal wrappers fill the container
-            try { jQuery(this.$element).find('.owl-stage-outer').css('height', '100%'); } catch (e) { }
-        },
-        responsive: { 0: { items: 1 }, 768: { items: 1 } }
-    });
-
-    $el.data('owl-initialized', true);
-}
-
 // DOM Ready
 document.addEventListener("DOMContentLoaded", function () {
     loadComponent("header", "components/header.html");
@@ -523,14 +488,12 @@ function showCookieModal(basePath, bannerReference) {
     }
 }
 
-// Robust carousel initializer: retry if bootstrap isn't ready or carousel element not yet available
+// Robust carousel initializer using Bootstrap's Carousel
 function initHomeCarousel() {
     const el = document.getElementById('homeCarousel');
-    if (!el) return;
-    // avoid double-init
+    if (!el || typeof bootstrap === 'undefined') return;
     if (el.__solvyCarouselInitialized) return;
     try {
-        // eslint-disable-next-line no-undef
         const car = new bootstrap.Carousel(el, {
             interval: 5000,
             ride: 'carousel',
@@ -540,18 +503,6 @@ function initHomeCarousel() {
         el.__solvyCarouselInitialized = true;
         return car;
     } catch (err) {
-        // bootstrap might not be loaded yet; ignore and allow retries
         return null;
     }
 }
-
-// Try to initialize carousel at several times: DOMContentLoaded, window load and a few retries
-document.addEventListener('DOMContentLoaded', function () {
-    setTimeout(initHomeCarousel, 200);
-});
-window.addEventListener('load', function () {
-    initHomeCarousel();
-    // additional retries in case resources take longer
-    setTimeout(initHomeCarousel, 500);
-    setTimeout(initHomeCarousel, 1500);
-});

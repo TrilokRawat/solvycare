@@ -171,35 +171,25 @@ a:hover {
     position: relative;
     padding: 0;
     overflow: hidden;
+    min-height: calc(100vh - var(--navbar-height));
 }
 
-.hero-home .owl-carousel {
-    min-height: 45vh;
-    max-height: calc(100vh - var(--navbar-height));
-    height: auto;
-}
-
-.hero-home .owl-carousel .owl-stage-outer,
-.hero-home .owl-carousel .owl-stage,
-.hero-home .owl-carousel .owl-item {
-    height: 100% !important;
-}
-
-.hero-home .owl-carousel .item {
+.hero-home .carousel,
+.hero-home .carousel-inner,
+.hero-home .carousel-item {
     height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
-.hero-home .owl-carousel .item img {
+.hero-home .carousel-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: top center;
 }
 
-.hero-home .owl-carousel .owl-stage-outer {
-    margin-bottom: 0 !important;
+/* About sections (home + about page) */
+.about-page {
+    background: linear-gradient(180deg, #f8fafc 0%, #ffffff 55%);
 }
 
 .hero-overlay {
@@ -217,7 +207,7 @@ a:hover {
 .hero-overlay-inner {
     padding-bottom: 1rem;
     width: 100%;
-    display: none;
+    display: block;
 }
 
 .hero-label {
@@ -269,11 +259,27 @@ a:hover {
 /* Mobile: keep CTA button above slider dots and fully visible */
 @media (max-width: 767.98px) {
     .header-spacer {
-        height: 64px;
+        height: 88px;
     }
 
-    .hero-home .owl-carousel {
-        min-height: 40vh;
+    .hero-home {
+        min-height: auto;
+    }
+
+    .hero-home .carousel,
+    .hero-home .carousel-inner,
+    .hero-home .carousel-item {
+        height: auto;
+    }
+
+    .hero-home .carousel-item img {
+        height: auto;
+    }
+
+    /* Smaller logo on mobile */
+    .navbar-brand img {
+        width: 85px;
+        height: auto;
     }
 
     .section-padding {
@@ -326,19 +332,15 @@ a:hover {
     }
 }
 
-/* Owl dots (below overlay so CTA button stays on top) */
-.hero-home .owl-theme .owl-dots {
-    position: absolute;
-    bottom: 1rem;
-    left: 0;
-    right: 0;
-    margin: 0;
-    text-align: center;
-    z-index: 10;
+/* Carousel indicators below overlay */
+.hero-home .carousel-indicators {
+    bottom: 1.5rem;
 }
 
-.owl-theme .owl-nav {
-    display: none !important;
+.hero-home .carousel-indicators [data-bs-target] {
+    width: 9px;
+    height: 9px;
+    border-radius: 999px;
 }
 
 /* About (index) */
@@ -858,9 +860,10 @@ a:hover {
     padding: 0;
     object-fit: contain;
 }
+
 /* image container styling */
 .product-detail-page .product-detail-gallery {
-    background: linear-gradient(135deg, rgba(13,110,253,0.06) 0%, rgba(0,123,255,0.03) 100%);
+    background: linear-gradient(135deg, rgba(13, 110, 253, 0.06) 0%, rgba(0, 123, 255, 0.03) 100%);
     border-radius: 16px;
     padding: 2rem;
     display: flex;
@@ -871,27 +874,32 @@ a:hover {
 
 /* responsive improvements */
 @media (max-width: 767.98px) {
-    .product-detail-page #product-detail > .product-detail .product-detail-gallery {
+    .product-detail-page #product-detail>.product-detail .product-detail-gallery {
         position: relative;
         top: 0;
-        margin-top: 2rem; /* space above image when it's below content */
+        margin-top: 2rem;
+        /* space above image when it's below content */
         margin-bottom: 0;
         padding: 1.5rem;
         max-width: 80%;
         margin-left: auto;
         margin-right: auto;
     }
+
     .product-detail-page .product-detail-content {
         padding: 0 1rem;
     }
+
     .product-detail-page .product-detail-title {
         font-size: 1.75rem;
     }
+
     .product-detail-page .product-tagline {
         font-size: 1rem;
     }
+
     .product-detail-page .features-grid {
-        grid-template-columns: repeat(auto-fill,minmax(120px,1fr));
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     }
 
     /* Ensure fixed navbar has breathing room on small screens */
@@ -899,15 +907,18 @@ a:hover {
         padding-left: 0.6rem;
         padding-right: 0.6rem;
     }
+
     /* keep container padded as well so content doesn't touch edges */
     .navbar .container {
         padding-left: 0.6rem;
         padding-right: 0.6rem;
     }
+
     /* move the toggler slightly away from the right edge */
     .navbar-toggler {
         margin-right: 0.5rem;
     }
+
     /* small left offset for logo image so it's not flush */
     .navbar .navbar-brand img {
         margin-left: 0.25rem;
@@ -915,10 +926,11 @@ a:hover {
 }
 
 /* content wrapper default for mobile */
-.product-detail-page #product-detail > .product-detail {
+.product-detail-page #product-detail>.product-detail {
     display: block;
 }
-.product-detail-page #product-detail > .product-detail .product-detail-gallery {
+
+.product-detail-page #product-detail>.product-detail .product-detail-gallery {
     position: relative;
     top: auto;
     margin: 0 auto 1.5rem;
@@ -927,17 +939,19 @@ a:hover {
 
 /* desktop layout: use grid to place gallery on right spanning header & body */
 @media (min-width: 992px) {
+
     /* Desktop redesign: clearer left content column and compact right image column */
-    .product-detail-page #product-detail > .product-detail {
+    .product-detail-page #product-detail>.product-detail {
         padding-top: 1.5rem;
         padding-bottom: 1.5rem;
     }
 
     /* Desktop: show two cards side-by-side: left = image card, right = details card */
-    .product-detail-page #product-detail > .product-detail .product-detail-content {
+    .product-detail-page #product-detail>.product-detail .product-detail-content {
         display: grid;
         /* enlarge left column so image appears big on desktop */
-        grid-template-columns: min(520px, 48%) 1fr; /* left: large image card, right: details */
+        grid-template-columns: min(520px, 48%) 1fr;
+        /* left: large image card, right: details */
         grid-auto-rows: auto;
         gap: 1rem 1.25rem;
         align-items: start;
@@ -945,38 +959,47 @@ a:hover {
         padding: 0;
     }
 
-    .product-detail-page #product-detail > .product-detail .product-detail-header {
-        grid-column: 2 / 3; /* header goes into right/details column */
+    .product-detail-page #product-detail>.product-detail .product-detail-header {
+        grid-column: 2 / 3;
+        /* header goes into right/details column */
         grid-row: 1 / 2;
         padding: 0 1rem 0 0;
     }
 
     /* header spacing: keep title and category together */
-    .product-detail-page #product-detail > .product-detail .product-detail-header {
+    .product-detail-page #product-detail>.product-detail .product-detail-header {
         margin-bottom: 1rem;
     }
-    .product-detail-page #product-detail > .product-detail .product-detail-gallery {
-        grid-column: 1 / 2; /* image card on the left */
-        grid-row: 1 / span 2; /* span both header and body rows to be a standalone card */
+
+    .product-detail-page #product-detail>.product-detail .product-detail-gallery {
+        grid-column: 1 / 2;
+        /* image card on the left */
+        grid-row: 1 / span 2;
+        /* span both header and body rows to be a standalone card */
         margin: 0;
-        padding: 1rem; /* slightly larger padding for big image */
+        padding: 1rem;
+        /* slightly larger padding for big image */
         max-width: 100%;
         box-sizing: border-box;
         display: flex;
         align-items: center;
         justify-content: center;
-        align-self: start; /* align to top */
-        background: linear-gradient(135deg, rgba(13,110,253,0.03), rgba(0,123,255,0.01));
+        align-self: start;
+        /* align to top */
+        background: linear-gradient(135deg, rgba(13, 110, 253, 0.03), rgba(0, 123, 255, 0.01));
         border-radius: 14px;
-        box-shadow: 0 6px 18px rgba(15,23,42,0.06);
+        box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
     }
-    .product-detail-page #product-detail > .product-detail .product-detail-body {
-        grid-column: 2 / 3; /* details in right column */
+
+    .product-detail-page #product-detail>.product-detail .product-detail-body {
+        grid-column: 2 / 3;
+        /* details in right column */
         grid-row: 2 / 3;
         padding: 0 1rem 0 0;
     }
+
     /* constrain desktop image height */
-    .product-detail-page #product-detail > .product-detail .product-detail-gallery .product-detail-image {
+    .product-detail-page #product-detail>.product-detail .product-detail-gallery .product-detail-image {
         /* Make image fill the left card for a bigger look on desktop */
         max-width: 100%;
         max-height: 520px;
@@ -988,37 +1011,40 @@ a:hover {
     }
 
     /* Make details area appear like a card */
-    .product-detail-page #product-detail > .product-detail .product-detail-header,
-    .product-detail-page #product-detail > .product-detail .product-detail-body {
+    .product-detail-page #product-detail>.product-detail .product-detail-header,
+    .product-detail-page #product-detail>.product-detail .product-detail-body {
         background: #ffffff;
         border-radius: 12px;
-        box-shadow: 0 6px 18px rgba(15,23,42,0.04);
+        box-shadow: 0 6px 18px rgba(15, 23, 42, 0.04);
         padding: 1rem 1.25rem;
     }
 
     /* Make left content visually structured: keep it compact and readable */
-    .product-detail-page #product-detail > .product-detail .product-detail-header .product-detail-title {
+    .product-detail-page #product-detail>.product-detail .product-detail-header .product-detail-title {
         font-size: 2rem;
         margin-bottom: 0.25rem;
     }
-    .product-detail-page #product-detail > .product-detail .product-detail-body {
+
+    .product-detail-page #product-detail>.product-detail .product-detail-body {
         font-size: 0.95rem;
         color: #475569;
     }
 
     /* tighten overall content padding on desktop so top/bottom spacing is reduced */
-    .product-detail-page #product-detail > .product-detail .product-detail-content {
+    .product-detail-page #product-detail>.product-detail .product-detail-content {
         padding: 1rem 1.25rem;
     }
 }
-.product-detail-page #product-detail > .product-detail .product-detail-content {
+
+.product-detail-page #product-detail>.product-detail .product-detail-content {
     min-width: 0;
     background: #ffffff;
     padding: 2rem;
     border-radius: 16px;
-    box-shadow: 0 8px 24px rgba(15,23,42,0.07);
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.07);
 }
-.product-detail-page #product-detail > .product-detail .product-detail-category {
+
+.product-detail-page #product-detail>.product-detail .product-detail-category {
     display: inline-block;
     font-size: 0.75rem;
     font-weight: 600;
@@ -1027,6 +1053,7 @@ a:hover {
     color: var(--accent);
     margin-bottom: 0.5rem;
 }
+
 .product-detail-page .product-detail-title {
     font-size: 2rem;
     font-weight: 700;
@@ -1034,45 +1061,53 @@ a:hover {
     line-height: 1.25;
     color: var(--solvy-blue);
 }
+
 .product-detail-page .product-tagline {
     font-size: 1.125rem;
     font-weight: 500;
     color: #475569;
     margin-bottom: 1rem;
 }
+
 .product-detail-page .product-detail-lead {
     font-size: 1.125rem;
     color: #475569;
     margin-bottom: 1rem;
 }
-.product-detail-page #product-detail > .product-detail .product-detail-description {
+
+.product-detail-page #product-detail>.product-detail .product-detail-description {
     color: #64748b;
     margin-bottom: 1.5rem;
     line-height: 1.6;
 }
+
 .product-detail-page .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(140px,1fr));
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
     gap: 1.5rem;
     margin-bottom: 2rem;
 }
-.product-detail-page #product-detail > .product-detail .feature-item {
+
+.product-detail-page #product-detail>.product-detail .feature-item {
     display: flex;
     align-items: center;
     gap: 0.75rem;
     color: #0f172a;
 }
+
 .product-detail-page .feature-item .bi {
     font-size: 1.25rem;
     color: var(--solvy-blue);
 }
-.product-detail-page #product-detail > .product-detail .sizes {
+
+.product-detail-page #product-detail>.product-detail .sizes {
     display: flex;
     flex-wrap: wrap;
     gap: 0.75rem;
     margin-bottom: 2rem;
 }
-.product-detail-page #product-detail > .product-detail .size-pill {
+
+.product-detail-page #product-detail>.product-detail .size-pill {
     padding: 0.5rem 1rem;
     border: 1px solid var(--solvy-blue);
     border-radius: 999px;
@@ -1081,17 +1116,20 @@ a:hover {
     transition: background 0.2s, color 0.2s;
     color: var(--solvy-blue);
 }
+
 .product-detail-page .size-pill.selected,
 .product-detail-page .size-pill:hover {
     background: var(--solvy-blue);
     color: #fff;
 }
-.product-detail-page #product-detail > .product-detail .industries {
+
+.product-detail-page #product-detail>.product-detail .industries {
     display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(120px,1fr));
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     gap: 1rem;
     margin-bottom: 2rem;
 }
+
 .product-detail-page .sizes-label,
 .product-detail-page .industries-label,
 .product-detail-page .application-block {
@@ -1099,39 +1137,47 @@ a:hover {
     color: #475569;
     margin-bottom: 0.5rem;
 }
+
 .product-detail-page .sizes-label strong,
 .product-detail-page .industries-label strong,
 .product-detail-page .application-block strong {
     color: #0f172a;
 }
-.product-detail-page #product-detail > .product-detail .industry-item {
+
+.product-detail-page #product-detail>.product-detail .industry-item {
     display: flex;
     align-items: center;
     gap: 0.5rem;
     font-size: 0.9rem;
     color: #475569;
 }
+
 .product-detail-page .industry-item .bi {
     font-size: 1.25rem;
     color: var(--solvy-blue);
 }
-.product-detail-page #product-detail > .product-detail .cta-buttons {
+
+.product-detail-page #product-detail>.product-detail .cta-buttons {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
 }
-.product-detail-page #product-detail > .product-detail .btn-primary {
+
+.product-detail-page #product-detail>.product-detail .btn-primary {
     background: var(--solvy-blue);
     border: none;
 }
+
 .product-detail-page .btn-primary:hover {
     background: var(--solvy-blue-dark);
 }
-.product-detail-page #product-detail > .product-detail .btn-secondary {
+
+.product-detail-page #product-detail>.product-detail .btn-secondary {
     background: #fff;
     color: var(--solvy-blue);
     border: 1px solid var(--solvy-blue);
 }
+
 .product-detail-page .btn-secondary:hover {
     background: #e7f1ff;
 }
@@ -1140,6 +1186,7 @@ a:hover {
     .product-detail-page .product-detail-title {
         font-size: 1.5rem;
     }
+
     .product-detail-page .product-detail-lead {
         font-size: 1rem;
     }
@@ -1379,27 +1426,34 @@ a:hover {
 
 /* Mobile-friendly refinements */
 @media (max-width: 767.98px) {
+
     /* slightly shorter navbar on phones */
     :root {
         --navbar-height: 64px;
     }
+
     /* hero section padding & typography scaling */
     .hero-overlay-inner {
         padding: 2.5rem 1rem;
     }
+
     .hero-title {
         font-size: 2rem;
     }
+
     .hero-sub {
         font-size: 1rem;
     }
+
     .hero-label {
         font-size: 0.65rem;
     }
+
     /* industry hero smaller heading */
     .industry-hero-overlay .section-title {
         font-size: 1.5rem;
     }
+
     /* reduce all section titles a bit for phones */
     .section-title {
         font-size: 1.5rem;
@@ -1407,6 +1461,7 @@ a:hover {
 }
 
 @media (min-width: 768px) and (max-width: 991.98px) {
+
     /* moderate hero text on tablets */
     .hero-title {
         font-size: 2.25rem;
